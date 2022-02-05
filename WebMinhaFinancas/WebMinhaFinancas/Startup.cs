@@ -37,7 +37,8 @@ namespace WebMinhaFinancas
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             services.AddDbContext<WebMinhaFinancasContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("WebMinhaFinancasContext")));
+                    options.UseMySql(Configuration.GetConnectionString("WebMinhaFinancasContext"),
+                    builder => builder.MigrationsAssembly("WebMinhaFinancas")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
