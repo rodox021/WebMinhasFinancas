@@ -5,10 +5,9 @@ using System.Threading.Tasks;
 
 namespace WebMinhaFinancas.Models.Entitty
 {
-    public class TypePay: BaseEntity
+    public class TypeFixedBill : BaseEntity
     {
-        public string Flag { get; set; }
-        public string Icon { get; set; }
+        public string Name { get; set; }
 
     }
 }
