@@ -14,6 +14,7 @@ namespace WebMinhaFinancas.Data
         {
         }
 
-        public DbSet<WebMinhaFinancas.Models.Entitty.User> User { get; set; }
+        public DbSet<User> User { get; set; }
+        //public DbSet<> MyProperty { get; set; }
     }
 }
