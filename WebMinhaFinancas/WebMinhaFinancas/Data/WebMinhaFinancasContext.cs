@@ -15,6 +15,7 @@ namespace WebMinhaFinancas.Data
         }
 
         public DbSet<User> User { get; set; }
-        //public DbSet<> MyProperty { get; set; }
+        public DbSet<TypePay> TypePay { get; set; }
+
     }
 }

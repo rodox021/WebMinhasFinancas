@@ -9,6 +9,8 @@ namespace WebMinhaFinancas.Models.Entitty
     {
         public string Flag { get; set; }
         public string Icon { get; set; }
+        public Icon IconFont { get; set; }
+
 
     }
 }
