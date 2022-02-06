@@ -10,16 +10,16 @@ namespace WebMinhaFinancas.Models.Entitty
        
 
         public int Id { get; set; }
-        public string iconName { get; set; }
-        public string icon { get; set; }
+        public string IconName { get; set; }
+        public string IconClass { get; set; }
         public List<TypePay> LTPay { get; set; } = new List<TypePay>();
 
         public Icon() { }
         public Icon( string iconName, string icon)
         {
            
-            this.iconName = iconName;
-            this.icon = icon;
+            this.IconName = iconName;
+            this.IconClass = icon;
         }
     }
 }

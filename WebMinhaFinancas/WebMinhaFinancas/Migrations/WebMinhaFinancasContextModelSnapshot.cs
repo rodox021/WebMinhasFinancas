@@ -31,6 +31,24 @@ namespace WebMinhaFinancas.Migrations
                     b.ToTable("Icon");
                 });
 
+            modelBuilder.Entity("WebMinhaFinancas.Models.Entitty.TypeFixedBill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("CreateAt");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeFixedBill");
+                });
+
             modelBuilder.Entity("WebMinhaFinancas.Models.Entitty.TypePay", b =>
                 {
                     b.Property<int>("Id")

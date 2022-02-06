@@ -8,6 +8,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap_slate.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/MyStyle.css"/>
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -38,11 +39,13 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuração <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a asp-area="" asp-controller="TypePays" asp-action="Index">Tipo de pagamento</a></li>
+                            <li><a asp-area="" asp-controller="TypeFixedbills" asp-action="Index">Tipo de Conta Fixa</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a asp-area="" asp-controller="Icons" asp-action="Index">Icones</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="#">One more separated link</a></li>
                         </ul>
+                </ul>
             </div>
         </div>
     </nav>
@@ -54,7 +57,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2022 - WebMinhaFinancas</p>
+            <p>&copy; 2022 - Rodolfo Braga - Denvolvido com Am<i class="fa fa-heart color-red"></i>r </p>
         </footer>
     </div>
 

@@ -9,8 +9,8 @@ using WebMinhaFinancas.Data;
 namespace WebMinhaFinancas.Migrations
 {
     [DbContext(typeof(WebMinhaFinancasContext))]
-    [Migration("20220206032615_incial")]
-    partial class incial
+    [Migration("20220206203608_inicial")]
+    partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,24 @@ namespace WebMinhaFinancas.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Icon");
+                });
+
+            modelBuilder.Entity("WebMinhaFinancas.Models.Entitty.TypeFixedBill", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("CreateAt");
+
+                    b.Property<DateTime?>("DeletedAt");
+
+                    b.Property<string>("Name");
+
+                    b.Property<DateTime?>("UpdateAt");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TypeFixedBill");
                 });
 
             modelBuilder.Entity("WebMinhaFinancas.Models.Entitty.TypePay", b =>

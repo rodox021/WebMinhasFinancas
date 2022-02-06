@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebMinhaFinancas.Data;
+using WebMinhaFinancas.Service;
 
 namespace WebMinhaFinancas
 {
@@ -41,6 +42,7 @@ namespace WebMinhaFinancas
                     builder => builder.MigrationsAssembly("WebMinhaFinancas")));
 
             services.AddScoped<SeedingService>();
+            services.AddScoped<TypeFixedBillsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

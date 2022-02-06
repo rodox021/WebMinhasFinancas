@@ -9,5 +9,13 @@ namespace WebMinhaFinancas.Models.Entitty
     {
         public string Name { get; set; }
 
+        public TypeFixedBill()
+        {
+        }
+
+        public TypeFixedBill(string name)
+        {
+            Name = name;
+        }
     }
 }
