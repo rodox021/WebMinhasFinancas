@@ -48,9 +48,13 @@ namespace WebMinhaFinancas.Migrations
 
                     b.Property<DateTime?>("UpdateAt");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("IconFontId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("TypePay");
                 });
@@ -82,8 +86,12 @@ namespace WebMinhaFinancas.Migrations
             modelBuilder.Entity("WebMinhaFinancas.Models.Entitty.TypePay", b =>
                 {
                     b.HasOne("WebMinhaFinancas.Models.Entitty.Icon", "IconFont")
-                        .WithMany()
+                        .WithMany("LTPay")
                         .HasForeignKey("IconFontId");
+
+                    b.HasOne("WebMinhaFinancas.Models.Entitty.User", "User")
+                        .WithMany("LTyoePay")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

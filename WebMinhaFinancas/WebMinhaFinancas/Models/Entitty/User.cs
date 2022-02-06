@@ -12,6 +12,8 @@ namespace WebMinhaFinancas.Models.Entitty
         public string Email { get; set; }
         public string Password { get; set; }
         public Boolean Active { get; set; } = true;
+        public List<TypePay> LTyoePay { get; set; }
+
 
 
     }
