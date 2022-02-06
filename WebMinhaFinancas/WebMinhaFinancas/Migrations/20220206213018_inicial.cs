@@ -14,8 +14,8 @@ namespace WebMinhaFinancas.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    iconName = table.Column<string>(nullable: true),
-                    icon = table.Column<string>(nullable: true)
+                    IconName = table.Column<string>(nullable: true),
+                    IconClass = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

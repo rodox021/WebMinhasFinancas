@@ -8,7 +8,7 @@ namespace WebMinhaFinancas.Data
 {
     public class SeedingService
     {
-        private WebMinhaFinancasContext _context;
+        private readonly WebMinhaFinancasContext _context;
 
         public SeedingService(WebMinhaFinancasContext conext)
         {

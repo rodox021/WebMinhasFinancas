@@ -1,3 +1,7 @@
 ﻿.icon-hand {
     cursor: pointer;
 }
+.mr-15{
+    margin-right: 10px;
+    width: 50px;
+}

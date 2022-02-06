@@ -9,7 +9,7 @@ using WebMinhaFinancas.Data;
 namespace WebMinhaFinancas.Migrations
 {
     [DbContext(typeof(WebMinhaFinancasContext))]
-    [Migration("20220206203608_inicial")]
+    [Migration("20220206213018_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,9 +24,9 @@ namespace WebMinhaFinancas.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("icon");
+                    b.Property<string>("IconClass");
 
-                    b.Property<string>("iconName");
+                    b.Property<string>("IconName");
 
                     b.HasKey("Id");
 

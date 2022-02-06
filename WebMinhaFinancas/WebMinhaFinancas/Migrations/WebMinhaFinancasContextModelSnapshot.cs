@@ -22,9 +22,9 @@ namespace WebMinhaFinancas.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("icon");
+                    b.Property<string>("IconClass");
 
-                    b.Property<string>("iconName");
+                    b.Property<string>("IconName");
 
                     b.HasKey("Id");
 
