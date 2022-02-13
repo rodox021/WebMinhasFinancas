@@ -43,6 +43,8 @@ namespace WebMinhaFinancas
 
             services.AddScoped<SeedingService>();
             services.AddScoped<TypeFixedBillsService>();
+            services.AddScoped<TypePayService>();
+            services.AddScoped<IconService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

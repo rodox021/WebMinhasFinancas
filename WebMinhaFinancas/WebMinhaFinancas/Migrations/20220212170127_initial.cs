@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebMinhaFinancas.Migrations
 {
-    public partial class inicial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,18 +68,18 @@ namespace WebMinhaFinancas.Migrations
                     DeletedAt = table.Column<DateTime>(nullable: true),
                     Flag = table.Column<string>(nullable: true),
                     Icon = table.Column<string>(nullable: true),
-                    IconFontId = table.Column<int>(nullable: true),
+                    IconId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TypePay", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TypePay_Icon_IconFontId",
-                        column: x => x.IconFontId,
+                        name: "FK_TypePay_Icon_IconId",
+                        column: x => x.IconId,
                         principalTable: "Icon",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TypePay_User_UserId",
                         column: x => x.UserId,
@@ -89,9 +89,9 @@ namespace WebMinhaFinancas.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TypePay_IconFontId",
+                name: "IX_TypePay_IconId",
                 table: "TypePay",
-                column: "IconFontId");
+                column: "IconId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_TypePay_UserId",

@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMinhaFinancas.Data;
 
 namespace WebMinhaFinancas.Migrations
 {
     [DbContext(typeof(WebMinhaFinancasContext))]
-    partial class WebMinhaFinancasContextModelSnapshot : ModelSnapshot
+    [Migration("20220212170127_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,6 +61,8 @@ namespace WebMinhaFinancas.Migrations
                     b.Property<DateTime?>("DeletedAt");
 
                     b.Property<string>("Flag");
+
+                    b.Property<string>("Icon");
 
                     b.Property<int>("IconId");
 

@@ -9,8 +9,8 @@ using WebMinhaFinancas.Data;
 namespace WebMinhaFinancas.Migrations
 {
     [DbContext(typeof(WebMinhaFinancasContext))]
-    [Migration("20220206213018_inicial")]
-    partial class inicial
+    [Migration("20220212171009_TypePayRemovedCampoIcon")]
+    partial class TypePayRemovedCampoIcon
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,9 +62,7 @@ namespace WebMinhaFinancas.Migrations
 
                     b.Property<string>("Flag");
 
-                    b.Property<string>("Icon");
-
-                    b.Property<int?>("IconFontId");
+                    b.Property<int>("IconId");
 
                     b.Property<DateTime?>("UpdateAt");
 
@@ -72,7 +70,7 @@ namespace WebMinhaFinancas.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IconFontId");
+                    b.HasIndex("IconId");
 
                     b.HasIndex("UserId");
 
@@ -107,7 +105,8 @@ namespace WebMinhaFinancas.Migrations
                 {
                     b.HasOne("WebMinhaFinancas.Models.Entitty.Icon", "IconFont")
                         .WithMany("LTPay")
-                        .HasForeignKey("IconFontId");
+                        .HasForeignKey("IconId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("WebMinhaFinancas.Models.Entitty.User", "User")
                         .WithMany("LTyoePay")

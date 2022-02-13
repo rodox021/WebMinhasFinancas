@@ -22,7 +22,8 @@ namespace WebMinhaFinancas.Controllers
         // GET: TypePays
         public async Task<IActionResult> Index()
         {
-            return View(await _context.TypePay.ToListAsync());
+            var webMinhaFinancasContext = _context.TypePay.Include(t => t.IconFont);
+            return View(await webMinhaFinancasContext.ToListAsync());
         }
 
         // GET: TypePays/Details/5
@@ -34,6 +35,7 @@ namespace WebMinhaFinancas.Controllers
             }
 
             var typePay = await _context.TypePay
+                .Include(t => t.IconFont)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (typePay == null)
             {
@@ -46,6 +48,7 @@ namespace WebMinhaFinancas.Controllers
         // GET: TypePays/Create
         public IActionResult Create()
         {
+            ViewData["IconId"] = new SelectList(_context.Icon, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace WebMinhaFinancas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Flag,Icon,Id,CreateAt,UpdateAt,DeletedAt")] TypePay typePay)
+        public async Task<IActionResult> Create([Bind("Flag,IconId,Id,CreateAt,UpdateAt,DeletedAt")] TypePay typePay)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace WebMinhaFinancas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IconId"] = new SelectList(_context.Icon, "Id", "Id", typePay.IconId);
             return View(typePay);
         }
 
@@ -78,6 +82,7 @@ namespace WebMinhaFinancas.Controllers
             {
                 return NotFound();
             }
+            ViewData["IconId"] = new SelectList(_context.Icon, "Id", "Id", typePay.IconId);
             return View(typePay);
         }
 
@@ -86,7 +91,7 @@ namespace WebMinhaFinancas.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Flag,Icon,Id,CreateAt,UpdateAt,DeletedAt")] TypePay typePay)
+        public async Task<IActionResult> Edit(int id, [Bind("Flag,IconId,Id,CreateAt,UpdateAt,DeletedAt")] TypePay typePay)
         {
             if (id != typePay.Id)
             {
@@ -113,6 +118,7 @@ namespace WebMinhaFinancas.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["IconId"] = new SelectList(_context.Icon, "Id", "Id", typePay.IconId);
             return View(typePay);
         }
 
@@ -125,6 +131,7 @@ namespace WebMinhaFinancas.Controllers
             }
 
             var typePay = await _context.TypePay
+                .Include(t => t.IconFont)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (typePay == null)
             {
