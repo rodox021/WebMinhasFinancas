@@ -6,50 +6,50 @@
 
 <h2 class="jumbotron">@ViewData["Title"]</h2>
 
-<p >
+<p>
     <a class="btn sbtn-default myFont" asp-action="Create">Create New</a>
 </p>
-<p class="myFont">
-    Testando
-</p>
+
 <table class="table">
     <thead>
-        <tr>
+        <tr class="">
             <th>
-                @Html.DisplayNameFor(model => model.Flag)
+               Bandeira
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.IconFont)
+               Icone
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateAt)
+            <th>Criando em:
             </th>
-           
+
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr class="myTamanhoFonte">
-            <td >
-                @item.Flag
-            </td>
-            <td>
-               @*@Html.DisplayFor(modelItem => item.IconFont.IconClass)*@
-                <i class="@item.IconFont.IconClass myFont"></i>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class=" text-uppercase">
+                    @item.Flag
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.IconFont.IconClass)*@
+                    <i class="@item.IconFont.IconClass myTamanhoFonte"></i>
 
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.CreateAt)*@
-                @item.CreateAt
-            </td>
-           
-            <td>
-                <a class="btn btn-warning mr-15" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit fa"></i></a>
-                <a class="btn btn-info mr-15" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info fa"></i></a>
-                <a class="btn btn-danger mr-15" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash fa"></i></a>
-            </td>
-        </tr>
-}
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.CreateAt)*@
+                    
+                       @item.CreateAt
+                    
+                </td>
+
+                <td>
+                    <a class="btn btn-warning mr-15" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit fa"></i></a>
+                    <a class="btn btn-info mr-15" asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-info fa"></i></a>
+                    <a class="btn btn-danger mr-15" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash fa"></i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
