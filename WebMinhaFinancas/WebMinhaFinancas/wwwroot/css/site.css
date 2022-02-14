@@ -28,6 +28,9 @@ body {
 #qrCode {
     margin: 15px;
 }
+.myMargin-top {
+    padding: 50px;
+}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

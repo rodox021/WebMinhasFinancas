@@ -20,19 +20,21 @@ namespace WebMinhaFinancas.Controllers
             _typePayService = typePayService;
             _iconService = iconService;
         }
-
+        //------------------------------------------------------------------
         public IActionResult Index()
         {
             var list = _typePayService.FindAll();
             
             return View(list);
         }
+        //------------------------------------------------------------------
         public IActionResult Create()
         {
             var icons = _iconService.FindAll();
             var viewModels = new TypePayFormViewModel { Icon = icons };
             return View(viewModels);
         }
+        //------------------------------------------------------------------
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TypePay typePay)
@@ -40,11 +42,49 @@ namespace WebMinhaFinancas.Controllers
             _typePayService.Insert(typePay);
             return RedirectToAction(nameof(Index));
         }
+        //------------------------------------------------------------------
         public IActionResult Delete(int? id)
         {
-            _typePayService.Delete(id);
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var tp = _typePayService.FindById(id.Value);
+
+            if (tp == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(tp);
+        }
+        //------------------------------------------------------------------
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            _typePayService.Delete(id);
             return RedirectToAction(nameof(Index));
+        }
+        //------------------------------------------------------------------
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var tp = _typePayService.FindById(id.Value);
+
+            if (tp == null)
+            {
+                return NotFound();
+            }
+
+
+            return View(tp);
         }
     }
 }

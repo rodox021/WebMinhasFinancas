@@ -1,0 +1,28 @@
+﻿@model WebMinhaFinancas.Models.Entitty.TypePay
+
+@{
+    ViewData["Title"] = "Deletar Tipo de Pagamento";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h3>Confirma a exclusão?</h3>
+<hr />
+<div class=" ">
+    <div class="col-lg-12">
+        <label class="modal-title">Bandeira: </label>
+        <label>@Html.DisplayFor(model => model.Flag) </label>
+    </div>
+    <div class="col-lg-12 myMargin-top">
+       
+        <label><i class="@Html.DisplayFor(model => model.IconFont.IconClass ) myTamanhoFonte"></i> </label>
+    </div>
+
+</div>
+<br />
+<div class="myMargin-top">
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id"/>
+        <input class="btn btn-danger " type="submit" value="Delete" />
+        <a class="btn btn-default" asp-action="Index">Cancelar</a>
+    </form>
+</div>

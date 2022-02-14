@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebMinhaFinancas.Data;
 using WebMinhaFinancas.Models.Entitty;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebMinhaFinancas.Service
 {
@@ -13,7 +14,7 @@ namespace WebMinhaFinancas.Service
         {
             _context = context;
         }
-
+        //----------------------------------------------------------------------------------------------
 
         public List<TypePay> FindAll()
         {
@@ -46,10 +47,12 @@ namespace WebMinhaFinancas.Service
                       };
 
 
-            //.FirstOrDefaultAsync(m => m.Id == id);
+           
+            // Fazendo join com INCLUDE
+            var resultado = _context.TypePay.Include(obj => obj.IconFont).ToList();
 
 
-            return res.OrderBy(x => x.Flag).ToList();
+            return resultado; //res.OrderBy(x => x.Flag).ToList();
         }
         //----------------------------------------------------------------------------------------------
         public void Insert(TypePay tp)
@@ -60,21 +63,15 @@ namespace WebMinhaFinancas.Service
 
         }
         //----------------------------------------------------------------------------------------------
-        public void Delete(int? id)
+        public TypePay FindById(int id)
         {
-            if (id == null)
-            {
-                return;
-            }
-
-            var tp = _context.TypePay.FirstOrDefault(t => t.Id == id);
-
-            if (tp.Id == null)
-            {
-                return;
-            }
-
-            _context.TypePay.Remove(tp);
+            return _context.TypePay.Include(o => o.IconFont).FirstOrDefault(obj => obj.Id == id);
+        }
+        //----------------------------------------------------------------------------------------------
+        public void Delete(int id)
+        {
+            var obj = _context.TypePay.Find(id);
+            _context.TypePay.Remove(obj);
             _context.SaveChanges();
         }
     }

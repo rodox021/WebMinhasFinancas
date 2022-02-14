@@ -1,0 +1,22 @@
+﻿@model WebMinhaFinancas.Models.Entitty.TypePay
+
+@{ 
+    ViewData["Title"] = "Detalhes do Tipo de Pagamento";
+} 
+
+<h2>
+    @ViewData["Title"]
+</h2>
+<hr />
+<div>
+    <dl class="dl-horizontal">
+        <dt>Bandeira: </dt>
+        <dd>@Html.DisplayFor(model => model.Flag)</dd>
+        <dt> </dt>
+        <dd> <i class="@Html.DisplayFor(model => model.IconFont.IconClass)"></i> </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-warning" asp-action="Edit">Editar</a>
+    <a class="btn btn-default" asp-action="Index">Cancelar</a>
+</div>
