@@ -12,6 +12,8 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebMinhaFinancas.Data;
 using WebMinhaFinancas.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Rotativa.AspNetCore;
 
 namespace WebMinhaFinancas
 {
@@ -40,7 +42,16 @@ namespace WebMinhaFinancas
             services.AddDbContext<WebMinhaFinancasContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebMinhaFinancasContext"),
                     builder => builder.MigrationsAssembly("WebMinhaFinancas")));
+            services.AddSession(op =>
+            {
+                op.IdleTimeout = TimeSpan.FromDays(1);
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(op => 
+            {
+                op.LoginPath = "/User/Login";
+            });
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<SeedingService>();
             services.AddScoped<TypeFixedBillsService>();
             services.AddScoped<TypePayService>();
@@ -61,15 +72,18 @@ namespace WebMinhaFinancas
                 app.UseHsts();
             }
 
+            app.UseAuthentication();
+            app.UseSession();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            RotativaConfiguration.Setup(env);
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller=User}/{action=Registro}/{id?}");
             });
         }
     }

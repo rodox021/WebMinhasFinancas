@@ -9,7 +9,7 @@
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap_slate.css" />
         <link rel="stylesheet" href="~/css/site.css" />
-      
+
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
@@ -23,8 +23,8 @@
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
+        <div class="container r">
+            <div class="navbar-header fg">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -33,22 +33,34 @@
                 </button>
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebMinhaFinancas</a>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuração <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-area="" asp-controller="TypePay" asp-action="Index">Tipo de Conta Pagamento</a></li>
-                            <li><a asp-area="" asp-controller="TypeFixedbills" asp-action="Index">Tipo de Conta Fixa</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a asp-area="" asp-controller="Icons" asp-action="Index">Icones</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                </ul>
+            <div class="navbar-collapse collapse r">
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav ">
+                        <li><a asp-area="" asp-controller="User" asp-action="Registro">Registrar</a></li>
+                        <li><a asp-area="" asp-controller="User" asp-action="Login">Login</a></li>
+                    </ul>
+                }
+                else
+                {
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Configuração <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a asp-area="" asp-controller="TypePay" asp-action="Index">Tipo de Conta Pagamento</a></li>
+                        <li><a asp-area="" asp-controller="TypeFixedbills" asp-action="Index">Tipo de Conta Fixa</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a asp-area="" asp-controller="Icons" asp-action="Index">Icones</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                <li><a asp-area="" asp-controller="User" asp-action="Logout">Logout</a></li>
+            </ul>
+                }
             </div>
         </div>
     </nav>
