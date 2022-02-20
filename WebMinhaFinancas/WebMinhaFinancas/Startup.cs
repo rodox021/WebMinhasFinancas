@@ -23,10 +23,11 @@ namespace WebMinhaFinancas
         {
             Configuration = configuration;
         }
-
+        //-----------------------------------------------------------------------------------------
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
+        //-----------------------------------------------------------------------------------------
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<CookiePolicyOptions>(options =>
@@ -42,9 +43,10 @@ namespace WebMinhaFinancas
             services.AddDbContext<WebMinhaFinancasContext>(options =>
                     options.UseMySql(Configuration.GetConnectionString("WebMinhaFinancasContext"),
                     builder => builder.MigrationsAssembly("WebMinhaFinancas")));
+
             services.AddSession(op =>
             {
-                op.IdleTimeout = TimeSpan.FromDays(1);
+                op.IdleTimeout = TimeSpan.FromMinutes(10); //
             });
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(op => 
             {
@@ -56,8 +58,9 @@ namespace WebMinhaFinancas
             services.AddScoped<TypeFixedBillsService>();
             services.AddScoped<TypePayService>();
             services.AddScoped<IconService>();
+            services.AddScoped<UserService>();
         }
-
+        //-----------------------------------------------------------------------------------------
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, SeedingService seedingService)
         {
@@ -83,7 +86,7 @@ namespace WebMinhaFinancas
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=User}/{action=Registro}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

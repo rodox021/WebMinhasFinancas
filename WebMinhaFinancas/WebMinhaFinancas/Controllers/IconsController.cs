@@ -10,7 +10,7 @@ using WebMinhaFinancas.Models.Entitty;
 
 namespace WebMinhaFinancas.Controllers
 {
-    public class IconsController : Controller
+    public class IconsController : BaseController
     {
         private readonly WebMinhaFinancasContext _context;
 
@@ -18,13 +18,13 @@ namespace WebMinhaFinancas.Controllers
         {
             _context = context;
         }
-
+        //---------------------------------------------------------
         // GET: Icons
         public async Task<IActionResult> Index()
         {
             return View(await _context.Icon.ToListAsync());
         }
-
+        //---------------------------------------------------------
         // GET: Icons/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -42,19 +42,19 @@ namespace WebMinhaFinancas.Controllers
 
             return View(icon);
         }
-
+        //---------------------------------------------------------
         // GET: Icons/Create
         public IActionResult Create()
         {
             return View();
         }
-
+        //---------------------------------------------------------
         // POST: Icons/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,iconName,icon")] Icon icon)
+        public async Task<IActionResult> Create([Bind("Id,IconName,IconClass")] Icon icon)
         {
             if (ModelState.IsValid)
             {
@@ -62,9 +62,9 @@ namespace WebMinhaFinancas.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(icon);
+            return Autenticado() == null ? View(icon) : Autenticado();
         }
-
+        //---------------------------------------------------------
         // GET: Icons/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -78,15 +78,15 @@ namespace WebMinhaFinancas.Controllers
             {
                 return NotFound();
             }
-            return View(icon);
+            return   Autenticado() == null ? View(icon) : Autenticado();
         }
-
+        //---------------------------------------------------------
         // POST: Icons/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,iconName,icon")] Icon icon)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,IconName,IconClass")] Icon icon)
         {
             if (id != icon.Id)
             {
@@ -115,7 +115,7 @@ namespace WebMinhaFinancas.Controllers
             }
             return View(icon);
         }
-
+        //---------------------------------------------------------
         // GET: Icons/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
